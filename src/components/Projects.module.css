@@ -1,0 +1,33 @@
+.section {
+  padding: 72px var(--gutter);
+  border-bottom: 1px solid var(--border);
+}
+
+.heading {
+  margin-bottom: 40px;
+}
+
+.subhead {
+  font-family: var(--mono);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.footer {
+  margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 48px var(--gutter);
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

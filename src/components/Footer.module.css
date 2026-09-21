@@ -1,0 +1,27 @@
+.footer {
+  padding: 48px var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+}
+
+.contact {
+  color: var(--text-h);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-border);
+}
+
+.contact:hover {
+  color: var(--accent-text);
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    padding: 32px var(--gutter);
+  }
+}

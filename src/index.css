@@ -1,0 +1,163 @@
+/* Design tokens. Define a color once here and every component reads it, so a
+   palette change is a one-line edit rather than a find-and-replace.
+
+   Two brand colors:
+     purple #57469A  -- primary, used for buttons and tags
+     red    #D72529  -- secondary, used for small label text and highlights
+
+   Each one has a separate "-text" token. The brand hexes are rich enough for
+   solid fills with white text on top, but too dark to read AS text against a
+   black background (#57469A only hits 2.75:1, where 4.5:1 is the readable
+   minimum). So dark mode swaps in lightened versions for text only. */
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+
+  --accent: #57469a;
+  --accent-text: #57469a;
+  --accent-bg: rgba(87, 70, 154, 0.1);
+  --accent-border: rgba(87, 70, 154, 0.5);
+
+  --red: #d72529;
+  --red-text: #d72529;
+  --red-bg: rgba(215, 37, 41, 0.1);
+
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  /* Shared horizontal padding so every section lines up on the same edge. */
+  --gutter: 48px;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+    --gutter: 20px;
+  }
+}
+
+/* Same tokens, redefined for dark mode. No component has to change. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #000;
+    --border: #2a2a30;
+    --code-bg: #141418;
+
+    /* Fills keep the exact brand hexes; text uses lightened tints so it
+       clears 4.5:1 against pure black. */
+    --accent: #57469a;
+    --accent-text: #9a8ad4;
+    --accent-bg: rgba(87, 70, 154, 0.22);
+    --accent-border: rgba(87, 70, 154, 0.7);
+
+    --red: #d72529;
+    --red-text: #f2555a;
+    --red-bg: rgba(215, 37, 41, 0.18);
+
+    --shadow:
+      rgba(0, 0, 0, 0.6) 0 10px 15px -3px, rgba(0, 0, 0, 0.4) 0 4px 6px -2px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+/* Buttons are the one thing every section needs, so they stay global instead
+   of being duplicated into three CSS Modules. Components combine the two:
+   className="btn btn-primary" */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-h);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, filter 0.2s;
+}
+
+.btn:hover {
+  border-color: var(--accent-border);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+/* Solid purple fill with white text: 7.64:1, readable in both themes. */
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.18);
+  border-color: var(--accent);
+}
