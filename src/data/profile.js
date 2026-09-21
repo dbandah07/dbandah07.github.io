@@ -7,6 +7,13 @@ export const profile = {
   tagline:
     'Computer science student at USC Games building gameplay systems, interfaces, and interactive 3D experiences in Unity, React, and C#.',
   location: 'Los Angeles, CA',
+
+  // sits under the name in the header, not in the experience list
+  education: {
+    degree: 'B.S. Computer Science (Games)',
+    school: 'University of Southern California',
+    period: 'Expected May 2028',
+  },
   email: 'dbh7202006@gmail.com',
 
   // public/ is served from the site root, so public/resume.pdf -> /resume.pdf

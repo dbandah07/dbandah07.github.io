@@ -4,18 +4,6 @@
 
 export const experience = [
   {
-    id: 'usc',
-    period: '2024 — May 2028',
-    role: 'B.S. Computer Science (Games)',
-    org: 'University of Southern California',
-    location: 'Los Angeles, CA',
-    highlights: [
-      'Coursework in Data Structures & Object-Oriented Design, Mobile Game Development, and Video Game Programming.',
-      'HSF Scholar, HITEC Scholar, and QuestBridge Scholar.',
-    ],
-    tools: ['C++', 'C#', 'JavaScript', 'Unity', 'Unreal Engine'],
-  },
-  {
     id: 'usc-games-career-center',
     period: 'Sep 2026 — Present',
     role: 'Student Assistant',

@@ -3,6 +3,13 @@
   border-bottom: 1px solid var(--border);
 }
 
+.logo {
+  display: block;
+  width: 104px;
+  height: 104px;
+  margin-bottom: 12px;
+}
+
 .eyebrow {
   font-family: var(--mono);
   font-size: 14px;
@@ -11,20 +18,53 @@
   color: var(--red-text);
 }
 
+/* the only element using the display face */
 .name {
-  margin: 12px 0 16px;
+  font-family: var(--display);
+  font-size: 76px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  margin: 14px 0 18px;
 }
 
 .tagline {
-  max-width: 52ch;
+  max-width: 62ch;
   font-size: 19px;
+}
+
+/* school line, sits under the tagline the way LinkedIn stacks it */
+.education {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.degree {
+  color: var(--text-h);
+}
+
+.school::before,
+.period::before {
+  content: '·';
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+.period {
+  font-family: var(--mono);
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 36px;
 }
 
 .links {
@@ -33,7 +73,7 @@
   gap: 20px;
   list-style: none;
   padding: 0;
-  margin: 40px 0 0;
+  margin: 22px 0 0;
   font-size: 15px;
 }
 
@@ -53,6 +93,14 @@
 @media (max-width: 1024px) {
   .header {
     padding: 56px var(--gutter) 48px;
+  }
+  .logo {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 10px;
+  }
+  .name {
+    font-size: 46px;
   }
   .tagline {
     font-size: 17px;

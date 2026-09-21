@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import { projects } from '../data/projects'
 import ProjectCard from './ProjectCard'
 import styles from './Projects.module.css'
@@ -24,9 +25,9 @@ function Projects() {
       </div>
 
       <div className={styles.footer}>
-        <button type="button" className="btn btn-primary">
+        <Link to="/projects" className="btn btn-primary">
           View all projects ({projects.length})
-        </button>
+        </Link>
       </div>
     </section>
   )

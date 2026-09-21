@@ -3,7 +3,10 @@
 
    Two brand colors:
      purple #57469A  -- primary, used for buttons and tags
-     red    #D72529  -- secondary, used for small label text and highlights
+     red    #D6242A  -- secondary, used for small label text and highlights
+
+   Both hexes come straight out of public/icon.svg so the site and the mark
+   never sit a shade apart.
 
    Each one has a separate "-text" token. The brand hexes are rich enough for
    solid fills with white text on top, but too dark to read AS text against a
@@ -21,16 +24,20 @@
   --accent-bg: rgba(87, 70, 154, 0.1);
   --accent-border: rgba(87, 70, 154, 0.5);
 
-  --red: #d72529;
-  --red-text: #d72529;
-  --red-bg: rgba(215, 37, 41, 0.1);
+  --red: #d6242a;
+  --red-text: #d6242a;
+  --red-bg: rgba(214, 36, 42, 0.1);
 
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
+    Tahoma, sans-serif;
+  --heading: var(--sans);
   --mono: ui-monospace, Consolas, monospace;
+
+  /* used by the name in the header and nowhere else */
+  --display: 'Playfair Display', Georgia, serif;
 
   /* Shared horizontal padding so every section lines up on the same edge. */
   --gutter: 48px;
@@ -67,9 +74,9 @@
     --accent-bg: rgba(87, 70, 154, 0.22);
     --accent-border: rgba(87, 70, 154, 0.7);
 
-    --red: #d72529;
-    --red-text: #f2555a;
-    --red-bg: rgba(215, 37, 41, 0.18);
+    --red: #d6242a;
+    --red-text: #e2666a;
+    --red-bg: rgba(214, 36, 42, 0.18);
 
     --shadow:
       rgba(0, 0, 0, 0.6) 0 10px 15px -3px, rgba(0, 0, 0, 0.4) 0 4px 6px -2px;
@@ -81,10 +88,7 @@ body {
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  border-inline: 1px solid var(--border);
+  width: 100%;
   min-height: 100svh;
   display: flex;
   flex-direction: column;

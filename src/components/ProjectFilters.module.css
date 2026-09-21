@@ -1,0 +1,47 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+/* same pill shape as the tool tags on the cards, sized up to be clickable */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.pill:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.active:hover {
+  color: #fff;
+}
+
+.count {
+  font-size: 12px;
+  opacity: 0.7;
+}
