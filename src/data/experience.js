@@ -1,11 +1,9 @@
-// Work, project and leadership history, pulled from public/resume.pdf.
-// Newest first. id has to be unique -- it's the React list key.
-// tools can be an empty array for roles with no tech stack.
+// experience
 
 export const experience = [
   {
     id: 'usc-games-career-center',
-    period: 'Sep 2026 — Present',
+    period: 'Sep 2026 - Present',
     role: 'Student Assistant',
     org: 'USC Games Career Center',
     location: 'Los Angeles, CA',
@@ -17,7 +15,7 @@ export const experience = [
   },
   {
     id: 'booz-allen',
-    period: 'Jun 2026 — Aug 2026',
+    period: 'Jun 2026 - Aug 2026',
     role: 'Software Engineering Intern',
     org: 'Booz Allen Hamilton',
     location: 'El Segundo, CA',
@@ -32,7 +30,7 @@ export const experience = [
   },
   {
     id: 'lvlnity',
-    period: 'Jan 2026 — Present',
+    period: 'Jan 2026 - Present',
     role: 'Backend & Full-stack Developer',
     org: 'Lvlnity',
     location: 'Los Angeles, CA',

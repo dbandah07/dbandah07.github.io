@@ -1,5 +1,4 @@
-// Shared site info. Components read from here, so a value only has to
-// change in one place.
+// profile
 
 export const profile = {
   name: 'Daniela Banda-Hernandez',
@@ -8,7 +7,7 @@ export const profile = {
     'Computer science student at USC Games building gameplay systems, interfaces, and interactive 3D experiences in Unity, React, and C#.',
   location: 'Los Angeles, CA',
 
-  // sits under the name in the header, not in the experience list
+  // school, degree, and graduation date
   education: {
     degree: 'B.S. Computer Science (Games)',
     school: 'University of Southern California',
@@ -16,7 +15,7 @@ export const profile = {
   },
   email: 'dbh7202006@gmail.com',
 
-  // public/ is served from the site root, so public/resume.pdf -> /resume.pdf
+  // public/resume.pdf -> /resume.pdf
   resumeUrl: '/resume.pdf',
 
   links: [

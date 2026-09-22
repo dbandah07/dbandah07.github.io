@@ -2,9 +2,9 @@ import { experience } from '../data/experience'
 import styles from './Experience.module.css'
 
 /**
- * Experience list. Entries live in src/data/experience.js.
- * key has to be a stable id, never the array index.
+ * Experience section of front page.
  */
+
 function Experience() {
   return (
     <section id="experience" className={styles.section}>
@@ -30,7 +30,7 @@ function Experience() {
                 ))}
               </ul>
 
-              {/* skip the tag row entirely when tools is empty */}
+              {/* no tag row when tools is empty */}
               {job.tools.length > 0 && (
                 <ul className={styles.tools}>
                   {job.tools.map((tool) => (

@@ -2,9 +2,9 @@ import { profile } from '../data/profile'
 import styles from './Footer.module.css'
 
 /**
- * Bottom of the page: rights and contact.
- * getFullYear() keeps the copyright year current automatically.
+ * Footer with copyright and contact info. Stays at the bottom of the page.
  */
+
 function Footer() {
   const year = new Date().getFullYear()
 

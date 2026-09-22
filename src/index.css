@@ -1,17 +1,13 @@
-/* Design tokens. Define a color once here and every component reads it, so a
-   palette change is a one-line edit rather than a find-and-replace.
+/* name font, self-hosted. ttf for now, woff2 if the 49 KB ever matters. */
+@font-face {
+  font-family: 'Kiwi Soda';
+  src: url('./assets/fonts/KiwiSoda.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-   Two brand colors:
-     purple #57469A  -- primary, used for buttons and tags
-     red    #D6242A  -- secondary, used for small label text and highlights
-
-   Both hexes come straight out of public/icon.svg so the site and the mark
-   never sit a shade apart.
-
-   Each one has a separate "-text" token. The brand hexes are rich enough for
-   solid fills with white text on top, but too dark to read AS text against a
-   black background (#57469A only hits 2.75:1, where 4.5:1 is the readable
-   minimum). So dark mode swaps in lightened versions for text only. */
+/* brand hexes match public/icon.svg */
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -36,10 +32,10 @@
   --heading: var(--sans);
   --mono: ui-monospace, Consolas, monospace;
 
-  /* used by the name in the header and nowhere else */
-  --display: 'Playfair Display', Georgia, serif;
+  /* used by the name in the header and the All projects heading */
+  --display: 'Kiwi Soda', Georgia, serif;
 
-  /* Shared horizontal padding so every section lines up on the same edge. */
+  /* every section lines up on this edge */
   --gutter: 48px;
 
   font: 18px/145% var(--sans);
@@ -58,7 +54,7 @@
   }
 }
 
-/* Same tokens, redefined for dark mode. No component has to change. */
+/* same tokens, dark mode values */
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
@@ -67,8 +63,7 @@
     --border: #2a2a30;
     --code-bg: #141418;
 
-    /* Fills keep the exact brand hexes; text uses lightened tints so it
-       clears 4.5:1 against pure black. */
+    /* fills keep the brand hexes, text tints are lightened to clear 4.5:1 on black */
     --accent: #57469a;
     --accent-text: #9a8ad4;
     --accent-bg: rgba(87, 70, 154, 0.22);
@@ -126,9 +121,7 @@ p {
   margin: 0;
 }
 
-/* Buttons are the one thing every section needs, so they stay global instead
-   of being duplicated into three CSS Modules. Components combine the two:
-   className="btn btn-primary" */
+/* global so three CSS Modules don't each redefine them. className="btn btn-primary" */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -154,7 +147,7 @@ p {
   outline-offset: 2px;
 }
 
-/* Solid purple fill with white text: 7.64:1, readable in both themes. */
+/* white on solid purple, 7.64:1 in both themes */
 .btn-primary {
   background: var(--accent);
   border-color: var(--accent);

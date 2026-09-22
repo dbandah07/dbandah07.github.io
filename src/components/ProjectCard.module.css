@@ -62,6 +62,14 @@
   color: var(--text);
 }
 
+/* studio name, e.g. Open Alpha */
+.studio {
+  font-family: var(--mono);
+  font-size: 13px;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
 .role {
   font-size: 14px;
   color: var(--red-text);
@@ -100,4 +108,61 @@
 
 .link:hover {
   color: var(--accent-text);
+}
+
+/* cover doubles as the carousel trigger when the project has a gallery */
+.coverButton {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.coverHint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 999px;
+  padding: 4px 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.coverButton:hover .coverHint,
+.coverButton:focus-visible .coverHint {
+  opacity: 1;
+}
+
+.coverButton:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: -2px;
+}
+
+/* same look as .link, but it opens the carousel instead of navigating */
+.linkButton {
+  composes: link;
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  color: var(--accent-text);
+}
+
+/* artwork is portrait, 16/9 would slice it into a strip */
+.thumbArt {
+  aspect-ratio: 3 / 4;
+  object-position: center top;
 }

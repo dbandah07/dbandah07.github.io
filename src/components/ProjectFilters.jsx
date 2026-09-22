@@ -1,12 +1,9 @@
 import styles from './ProjectFilters.module.css'
 
 /**
- * Filter pills for /projects. Controlled component -- it holds no state of
- * its own, the page above owns `active` and hands down `onChange`.
- *
- * counts maps a category name to how many projects match, so a filter with
- * nothing behind it can be shown as empty rather than looking broken.
+ * Project filter buttons.
  */
+
 function ProjectFilters({ categories, active, onChange, counts, total }) {
   const options = [{ label: 'All', count: total }].concat(
     categories.map((name) => ({ label: name, count: counts[name] ?? 0 })),
@@ -20,7 +17,6 @@ function ProjectFilters({ categories, active, onChange, counts, total }) {
           <button
             key={label}
             type="button"
-            // aria-pressed tells screen readers which filter is on
             aria-pressed={isActive}
             className={isActive ? `${styles.pill} ${styles.active}` : styles.pill}
             onClick={() => onChange(label)}

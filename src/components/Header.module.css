@@ -21,9 +21,9 @@
 /* the only element using the display face */
 .name {
   font-family: var(--display);
-  font-size: 76px;
-  font-weight: 600;
-  letter-spacing: -1px;
+  font-size: 96px;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.05;
   margin: 14px 0 18px;
 }
@@ -100,7 +100,7 @@
     margin-bottom: 10px;
   }
   .name {
-    font-size: 46px;
+    font-size: 52px;
   }
   .tagline {
     font-size: 17px;

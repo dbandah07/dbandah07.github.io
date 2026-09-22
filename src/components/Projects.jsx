@@ -6,6 +6,7 @@ import styles from './Projects.module.css'
 /**
  * Front-page projects section. Only renders entries flagged featured: true.
  */
+
 function Projects() {
   const featured = projects.filter((project) => project.featured)
 

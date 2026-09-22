@@ -7,30 +7,39 @@
   margin-bottom: 22px;
 }
 
+/* two columns, one would trail off mid-width */
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 44px;
+  /* columns rather than a grid: grid rows align and leave holes */
+  columns: 2;
+  column-gap: 48px;
 }
 
+/* dates above the role, a left rail costs too much of a half-width column */
 .item {
   display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 24px;
+  gap: 10px;
+  /* an entry never splits across the column break */
+  break-inside: avoid;
+  margin-bottom: 44px;
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
 }
 
 .period {
   font-family: var(--mono);
   font-size: 14px;
   color: var(--text-h);
-  padding-top: 3px;
 }
 
 .location {
   font-size: 13px;
-  margin-top: 4px;
   opacity: 0.75;
 }
 
@@ -50,7 +59,6 @@
 .highlights {
   margin: 0;
   padding-left: 18px;
-  max-width: 68ch;
   display: grid;
   gap: 6px;
   font-size: 16px;
@@ -82,19 +90,7 @@
   .section {
     padding: 48px var(--gutter);
   }
-  .item {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .meta {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  .period {
-    padding-top: 0;
-  }
-  .location {
-    margin-top: 0;
+  .list {
+    columns: 1;
   }
 }

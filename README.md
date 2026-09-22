@@ -26,7 +26,7 @@ The dev server prints a local URL with hot reloading enabled.
 
 ```
 src/
-├─ data/          content — edit these, not the components
+├─ data/          content: edit these, not the components
 │  ├─ profile.js      name, tagline, links, resume path
 │  ├─ experience.js   work and education history
 │  └─ projects.js     games and projects
@@ -38,5 +38,5 @@ Content lives in `src/data`, so adding a project or a role means editing an
 array rather than touching any JSX. Each component has its own
 `.module.css` beside it; colors come from the tokens in `src/index.css`.
 
-`public/` is served from the site root — `public/resume.pdf` is reachable at
+`public/` is served from the site root, so `public/resume.pdf` is reachable at
 `/resume.pdf`.

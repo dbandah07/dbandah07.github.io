@@ -4,15 +4,16 @@ import Home from './pages/Home'
 import AllProjects from './pages/AllProjects'
 import Footer from './components/Footer'
 
-// Router keeps the scroll position when the path changes, which lands you
-// halfway down the new page. Reset it on every navigation.
+// reset 
 function ScrollToTop() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   return null
 }
 
-// Page outline. Footer sits outside Routes so it shows on every page.
+// page outline, shows on every page
 function App() {
   return (
     <>
