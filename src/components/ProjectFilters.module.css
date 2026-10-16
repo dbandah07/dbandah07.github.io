@@ -9,10 +9,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--mono);
-  font-size: 14px;
-  padding: 7px 16px;
-  border-radius: 999px;
+  font: inherit;
+  font-size: 15px;
+  padding: 6px 14px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);

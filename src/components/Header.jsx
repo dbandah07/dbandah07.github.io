@@ -4,8 +4,8 @@ import styles from './Header.module.css'
 function Header() {
   return (
     <header className={styles.header}>
-      <p className={styles.eyebrow}>{profile.role}</p>
       <h1 className={styles.name}>{profile.name}</h1>
+      <p className={styles.role}>{profile.role}</p>
       <p className={styles.tagline}>{profile.tagline}</p>
 
       <p className={styles.education}>
@@ -19,20 +19,17 @@ function Header() {
         <a className="btn btn-primary" href={profile.resumeUrl} download>
           Download resume
         </a>
-        <a className="btn" href="#projects">
-          View work
-        </a>
-      </div>
 
-      <ul className={styles.links}>
-        {profile.links.map((link) => (
-          <li key={link.href}>
-            <a href={link.href} target="_blank" rel="noreferrer">
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <ul className={styles.links}>
+          {profile.links.map((link) => (
+            <li key={link.href}>
+              <a href={link.href} target="_blank" rel="noreferrer">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   )
 }

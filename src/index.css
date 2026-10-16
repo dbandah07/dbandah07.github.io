@@ -1,8 +1,8 @@
-/* name font, self-hosted. ttf for now, woff2 if the 49 KB ever matters. */
+/* name font, self-hosted. latin subset from google fonts, OFL */
 @font-face {
-  font-family: 'Kiwi Soda';
-  src: url('./assets/fonts/KiwiSoda.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Pixelify Sans';
+  src: url('./assets/fonts/PixelifySans.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
@@ -32,11 +32,13 @@
   --heading: var(--sans);
   --mono: ui-monospace, Consolas, monospace;
 
-  /* used by the name in the header and the All projects heading */
-  --display: 'Kiwi Soda', Georgia, serif;
+  /* name, nav, and page titles */
+  --display: 'Pixelify Sans', var(--mono);
 
   /* every section lines up on this edge */
   --gutter: 48px;
+  --radius: 4px;
+  --nav-h: 60px;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -63,7 +65,7 @@
     --border: #2a2a30;
     --code-bg: #141418;
 
-    /* fills keep the brand hexes, text tints are lightened to clear 4.5:1 on black */
+    /* fills stay the brand hexes, text versions are lighter so they read on black */
     --accent: #57469a;
     --accent-text: #9a8ad4;
     --accent-bg: rgba(87, 70, 154, 0.22);
@@ -80,6 +82,12 @@
 
 body {
   margin: 0;
+  background: var(--bg);
+}
+
+/* sticky nav would cover the top of a section jumped to by hash */
+section[id] {
+  scroll-margin-top: var(--nav-h);
 }
 
 #root {
@@ -121,7 +129,7 @@ p {
   margin: 0;
 }
 
-/* global so three CSS Modules don't each redefine them. className="btn btn-primary" */
+/* shared buttons. className="btn btn-primary" */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -129,7 +137,7 @@ p {
   font: inherit;
   font-size: 16px;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-h);
@@ -147,7 +155,6 @@ p {
   outline-offset: 2px;
 }
 
-/* white on solid purple, 7.64:1 in both themes */
 .btn-primary {
   background: var(--accent);
   border-color: var(--accent);

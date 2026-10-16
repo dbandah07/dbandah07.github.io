@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+
+# original headshot, has GPS in its metadata. the site uses headshot-web.jpg
+src/assets/headshot.JPG

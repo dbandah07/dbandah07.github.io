@@ -1,0 +1,73 @@
+.page {
+  padding: 64px var(--gutter) 96px;
+  flex-grow: 1;
+}
+
+.title {
+  font-family: var(--display);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 32px;
+}
+
+/* photo left, text right. the text column stops at a readable width */
+.layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 62ch);
+  gap: 48px;
+  align-items: start;
+}
+
+.photo,
+.placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius);
+}
+
+.photo {
+  display: block;
+  object-fit: cover;
+}
+
+.placeholder {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  border: 2px dashed var(--border);
+  background: var(--code-bg);
+  font-size: 14px;
+}
+
+.bio {
+  display: grid;
+  gap: 18px;
+}
+
+.bio a {
+  color: var(--text-h);
+  text-decoration-color: var(--accent-border);
+  text-underline-offset: 3px;
+}
+
+.bio a:hover {
+  color: var(--accent-text);
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 40px var(--gutter) 64px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .photo,
+  .placeholder {
+    max-width: 240px;
+  }
+}

@@ -1,21 +1,18 @@
+/* brand purple band. #57469a in both themes, so the text on it is always white */
 .section {
   padding: 72px var(--gutter);
-  border-bottom: 1px solid var(--border);
+  background: var(--accent);
+  color: #fff;
 }
 
 .heading {
-  margin-bottom: 22px;
-}
-
-.subhead {
-  font-family: var(--mono);
-  font-size: 14px;
-  margin-top: 8px;
+  color: #fff;
+  margin-bottom: 28px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -23,10 +20,36 @@
   margin-top: 40px;
 }
 
+/* the usual primary button would vanish on purple, so it flips to white */
+.more {
+  background: #fff;
+  border-color: #fff;
+  color: var(--accent);
+}
+
+.more:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.more:focus-visible {
+  outline-color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1024px) {
   .section {
     padding: 48px var(--gutter);
   }
+}
+
+/* one column. ProjectCard's .wide stops spanning at the same width */
+@media (max-width: 700px) {
   .grid {
     grid-template-columns: 1fr;
   }

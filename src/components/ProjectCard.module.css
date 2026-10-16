@@ -2,16 +2,16 @@
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius);
   overflow: hidden;
   background: var(--bg);
-  transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+  /* the portfolio section sets white text for its heading, cards reset it */
+  color: var(--text);
 }
 
-.card:hover {
-  box-shadow: var(--shadow);
-  border-color: var(--accent-border);
-  transform: translateY(-2px);
+.cover {
+  position: relative;
+  display: block;
 }
 
 .thumb,
@@ -23,15 +23,7 @@
 }
 
 .thumbEmpty {
-  background:
-    repeating-linear-gradient(
-      45deg,
-      var(--code-bg),
-      var(--code-bg) 10px,
-      transparent 10px,
-      transparent 20px
-    );
-  border-bottom: 1px solid var(--border);
+  background: var(--code-bg);
 }
 
 .body {
@@ -50,35 +42,35 @@
 
 .title {
   font-family: var(--heading);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
   color: var(--text-h);
   margin: 0;
 }
 
 .year {
-  font-family: var(--mono);
-  font-size: 13px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
   color: var(--text);
-}
-
-/* studio name, e.g. Open Alpha */
-.studio {
-  font-family: var(--mono);
-  font-size: 13px;
-  margin-top: 6px;
-  opacity: 0.85;
+  white-space: nowrap;
 }
 
 .role {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--red-text);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-.blurb {
-  font-size: 16px;
-  margin-top: 12px;
+.summary {
+  font-size: 15px;
+  margin-top: 14px;
+}
+
+/* the part i did reads a shade darker than the game description */
+.contribution {
+  font-size: 15px;
+  color: var(--text-h);
+  margin-top: 10px;
 }
 
 .tools {
@@ -91,29 +83,36 @@
 }
 
 .tool {
-  font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   padding: 2px 8px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--code-bg);
+  color: var(--text-h);
 }
 
 .link {
+  align-self: flex-start;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 18px;
   font-size: 15px;
   color: var(--text-h);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--red-text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 .link:hover {
   color: var(--accent-text);
 }
 
-/* cover doubles as the carousel trigger when the project has a gallery */
+.link:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+/* cover opens the trailer or the carousel */
 .coverButton {
-  position: relative;
-  display: block;
   width: 100%;
   padding: 0;
   border: 0;
@@ -126,12 +125,11 @@
   position: absolute;
   right: 10px;
   bottom: 10px;
-  font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   color: #fff;
-  background: rgba(0, 0, 0, 0.62);
-  border-radius: 999px;
-  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.72);
+  border-radius: 2px;
+  padding: 3px 9px;
   opacity: 0;
   transition: opacity 0.2s;
 }
@@ -146,23 +144,29 @@
   outline-offset: -2px;
 }
 
+/* lead card on the front page: full row, cover beside the text at its
+   normal 16/9. 701px lines up with where the Projects grid drops to one column */
+@media (min-width: 701px) {
+  .wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .wide > .cover {
+    flex: 0 0 50%;
+    min-width: 0;
+  }
+  .wide > .body {
+    padding: 28px;
+  }
+}
+
 /* same look as .link, but it opens the carousel instead of navigating */
 .linkButton {
   composes: link;
-  align-self: flex-start;
+  padding: 18px 0 0;
   border: 0;
   background: transparent;
   font: inherit;
   font-size: 15px;
   cursor: pointer;
-}
-
-.linkButton:hover {
-  color: var(--accent-text);
-}
-
-/* artwork is portrait, 16/9 would slice it into a strip */
-.thumbArt {
-  aspect-ratio: 3 / 4;
-  object-position: center top;
 }

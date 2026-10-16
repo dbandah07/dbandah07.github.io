@@ -33,8 +33,8 @@
 }
 
 .period {
-  font-family: var(--mono);
   font-size: 14px;
+  font-variant-numeric: tabular-nums;
   color: var(--text-h);
 }
 
@@ -45,8 +45,8 @@
 
 .role {
   font-family: var(--heading);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
   color: var(--text-h);
   margin: 0 0 12px;
 }
@@ -78,10 +78,9 @@
 }
 
 .tool {
-  font-family: var(--mono);
   font-size: 13px;
-  padding: 3px 10px;
-  border-radius: 999px;
+  padding: 2px 8px;
+  border-radius: 2px;
   background: var(--accent-bg);
   color: var(--accent-text);
 }

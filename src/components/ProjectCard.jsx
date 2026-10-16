@@ -4,65 +4,74 @@ import styles from './ProjectCard.module.css'
 
 /**
  * Project card for front & project page.
- * A project with a gallery opens a carousel when the cover is clicked.
+ * The cover opens the trailer when there is one, otherwise the gallery.
  */
 
 function ProjectCard({
   title,
   year,
   role,
-  medium,
-  blurb,
+  summary,
+  contribution,
   tools,
-  link,
+  trailer,
   thumbnail,
   gallery,
   galleryNoun = 'images',
-  art = false,
+  wide = false,
 }) {
   const [showGallery, setShowGallery] = useState(false)
   const images = gallery ?? []
-  const hasGallery = images.length > 0
 
   // one image opens as itself; a deck opens as a deck
   const galleryLabel =
     images.length === 1
       ? 'View full size'
-      : `View ${images.length} ${galleryNoun}`
+      : `View all ${images.length} ${galleryNoun}`
 
-  // art is portrait, so it gets a taller crop anchored to the top instead of
-  // the 16/9 the game covers use
-  const cover = (
-    <img
-      className={art ? `${styles.thumb} ${styles.thumbArt}` : styles.thumb}
-      src={thumbnail}
-      alt=""
-    />
-  )
+  const cover = <img className={styles.thumb} src={thumbnail} alt="" />
+
+  // always wrapped, so the wide card can give the cover half the row
+  let coverBlock = <div className={styles.cover}>{cover}</div>
+  if (!thumbnail) {
+    // plain block so the grid doesn't jump
+    coverBlock = (
+      <div className={`${styles.cover} ${styles.thumbEmpty}`} aria-hidden="true" />
+    )
+  } else if (trailer) {
+    coverBlock = (
+      <a
+        className={`${styles.cover} ${styles.coverButton}`}
+        href={trailer}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Watch the ${title} trailer on YouTube`}
+      >
+        {cover}
+        <span className={styles.coverHint}>Watch trailer</span>
+      </a>
+    )
+  } else if (images.length > 0) {
+    coverBlock = (
+      <button
+        type="button"
+        className={`${styles.cover} ${styles.coverButton}`}
+        onClick={() => setShowGallery(true)}
+        aria-label={
+          images.length === 1
+            ? `Open ${title} full size`
+            : `Open ${title} gallery, ${images.length} images`
+        }
+      >
+        {cover}
+        <span className={styles.coverHint}>{galleryLabel}</span>
+      </button>
+    )
+  }
 
   return (
-    <article className={styles.card}>
-      {/* placeholder block when there's no thumbnail, so the grid doesn't jump */}
-      {!thumbnail && <div className={styles.thumbEmpty} aria-hidden="true" />}
-
-      {thumbnail &&
-        (hasGallery ? (
-          <button
-            type="button"
-            className={styles.coverButton}
-            onClick={() => setShowGallery(true)}
-            aria-label={
-              images.length === 1
-                ? `Open ${title} full size`
-                : `Open ${title} gallery, ${images.length} images`
-            }
-          >
-            {cover}
-            <span className={styles.coverHint}>{galleryLabel}</span>
-          </button>
-        ) : (
-          cover
-        ))}
+    <article className={wide ? `${styles.card} ${styles.wide}` : styles.card}>
+      {coverBlock}
 
       <div className={styles.body}>
         <div className={styles.titleRow}>
@@ -70,12 +79,12 @@ function ProjectCard({
           <span className={styles.year}>{year}</span>
         </div>
 
-        {(role || medium) && (
-          <p className={styles.role}>{role || medium}</p>
-        )}
-        {blurb && <p className={styles.blurb}>{blurb}</p>}
+        {role && <p className={styles.role}>{role}</p>}
 
-        {/* art pieces carry no tool tags, so the row drops out instead of leaving a gap */}
+        {/* what the game is, then what i did on it */}
+        {summary && <p className={styles.summary}>{summary}</p>}
+        {contribution && <p className={styles.contribution}>{contribution}</p>}
+
         {(tools ?? []).length > 0 && (
           <ul className={styles.tools}>
             {tools.map((tool) => (
@@ -86,26 +95,25 @@ function ProjectCard({
           </ul>
         )}
 
-        {/* the link only renders when there is one */}
-        {link && (
+        {trailer && (
           <a
             className={styles.link}
-            href={link}
+            href={trailer}
             target="_blank"
             rel="noreferrer"
           >
-            Link to project →
+            Watch the trailer
           </a>
         )}
 
         {/* only a real deck gets a button, a single image opens from the cover */}
-        {!link && images.length > 1 && (
+        {!trailer && images.length > 1 && (
           <button
             type="button"
             className={styles.linkButton}
             onClick={() => setShowGallery(true)}
           >
-            {galleryLabel} →
+            {galleryLabel}
           </button>
         )}
       </div>

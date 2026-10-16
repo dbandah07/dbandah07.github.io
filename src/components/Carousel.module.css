@@ -2,8 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.88);
   display: grid;
   place-items: center;
   padding: 24px;
@@ -25,8 +24,8 @@
 }
 
 .count {
-  font-family: var(--mono);
-  font-size: 13px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
   color: #fff;
   opacity: 0.8;
 }
@@ -39,7 +38,7 @@
   color: #fff;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -60,7 +59,7 @@
   min-width: 0;
   max-height: 72svh;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: var(--radius);
 }
 
 .nav {

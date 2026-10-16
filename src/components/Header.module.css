@@ -1,36 +1,27 @@
 .header {
-  padding: 96px var(--gutter) 72px;
+  padding: 88px var(--gutter) 72px;
   border-bottom: 1px solid var(--border);
 }
 
-.logo {
-  display: block;
-  width: 104px;
-  height: 104px;
-  margin-bottom: 12px;
-}
-
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--red-text);
-}
-
-/* the only element using the display face */
+/* the display face at its biggest */
 .name {
   font-family: var(--display);
-  font-size: 96px;
+  font-size: 72px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.05;
-  margin: 14px 0 18px;
+}
+
+.role {
+  font-size: 24px;
+  color: var(--red-text);
+  margin-top: 12px;
 }
 
 .tagline {
   max-width: 62ch;
   font-size: 19px;
+  margin-top: 20px;
 }
 
 /* school line, sits under the tagline the way LinkedIn stacks it */
@@ -39,7 +30,7 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 16px;
   font-size: 16px;
 }
 
@@ -55,16 +46,16 @@
 }
 
 .period {
-  font-family: var(--mono);
-  font-size: 14px;
+  font-variant-numeric: tabular-nums;
   opacity: 0.8;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 36px;
+  align-items: center;
+  gap: 16px 28px;
+  margin-top: 32px;
 }
 
 .links {
@@ -73,34 +64,30 @@
   gap: 20px;
   list-style: none;
   padding: 0;
-  margin: 22px 0 0;
-  font-size: 15px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .links a {
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
+  color: var(--text-h);
+  text-decoration-color: var(--border);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
 }
 
 .links a:hover {
-  color: var(--text-h);
-  border-bottom-color: var(--red-text);
+  text-decoration-color: var(--red-text);
 }
 
 @media (max-width: 1024px) {
   .header {
-    padding: 56px var(--gutter) 48px;
-  }
-  .logo {
-    width: 76px;
-    height: 76px;
-    margin-bottom: 10px;
+    padding: 48px var(--gutter);
   }
   .name {
-    font-size: 52px;
+    font-size: 44px;
+  }
+  .role {
+    font-size: 20px;
   }
   .tagline {
     font-size: 17px;

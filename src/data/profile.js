@@ -1,10 +1,13 @@
 // profile
+// headshot-web.jpg is the cropped, resized copy of headshot.JPG with the
+// camera metadata (GPS) stripped. the original stays out of git
+import headshot from '../assets/headshot-web.jpg'
 
 export const profile = {
   name: 'Daniela Banda-Hernandez',
-  role: 'Game Programmer & Designer',
+  role: 'Gameplay Programmer & UI/UX Engineer',
   tagline:
-    'Computer science student at USC Games building gameplay systems, interfaces, and interactive 3D experiences in Unity, React, and C#.',
+    'Hi! I’m a current Computer Science Games student at USC who programs gameplay and UI in Unity and C#. When not building, or designing games, I build and design websites.',
   location: 'Los Angeles, CA',
 
   // school, degree, and graduation date
@@ -25,4 +28,14 @@ export const profile = {
       href: 'https://www.linkedin.com/in/daniela-banda-hernandez',
     },
   ],
+
+  // about page. headshot: null shows the placeholder box
+  about: {
+    headshot,
+    bio: [
+      'I’m a CS Games student at USC, graduating in 2028, and most of what I build ends up somewhere between gameplay and UI. On student games that’s meant programming gameplay systems in Unity, and during my internship at Booz Allen Hamilton it meant leading the React frontend for a mission-planning app, 3D satellite globe and all.',
+      'Games mean a lot to me because of my dad. My family lived paycheck to paycheck, and he worked from sunrise to midnight to provide for us. Somehow he still made time for us, and it was always some little match of Mortal Kombat. So I grew up seeing games as a way to relax and have fun, but also as a way to tell a story and bond with the people you love, even if you only have ten minutes for a battle. That time was so precious to me as a kid, and it still is twenty years later.',
+      'When I’m not coding I’m usually designing something as Co-VP of Marketing for our SHPE chapter, so a lot of the flyers and graphics you’ll see from us are mine. And somewhere in there, I taught myself guitar from YouTube videos.',
+    ],
+  },
 }

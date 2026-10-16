@@ -1,15 +1,24 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import Home from './pages/Home'
+import About from './pages/About'
 import AllProjects from './pages/AllProjects'
+import Nav from './components/Nav'
 import Footer from './components/Footer'
 
-// reset 
+// new page starts at the top, a #hash scrolls to that section instead.
+// key changes on every click, so Portfolio still scrolls when the hash is already set
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash, key } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    const target = hash && document.getElementById(hash.slice(1))
+    if (target) {
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      target.scrollIntoView({ behavior: still ? 'auto' : 'smooth' })
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash, key])
   return null
 }
 
@@ -18,8 +27,10 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/projects" element={<AllProjects />} />
       </Routes>
       <Footer />
