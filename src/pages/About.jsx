@@ -7,7 +7,7 @@ function About() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>About</h1>
+      <h1 className={styles.title}>Hi! I’m Daniela!</h1>
 
       <div className={styles.layout}>
         {headshot ? (

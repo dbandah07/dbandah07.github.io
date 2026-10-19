@@ -90,6 +90,12 @@
   color: var(--text-h);
 }
 
+/* same tag look, sits under the role line */
+.status {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
 .link {
   align-self: flex-start;
   margin-top: auto;
@@ -144,8 +150,8 @@
   outline-offset: -2px;
 }
 
-/* lead card on the front page: full row, cover beside the text at its
-   normal 16/9. 701px lines up with where the Projects grid drops to one column */
+/* full-row card: cover beside the text at its normal 16/9.
+   701px lines up with where the Projects grid drops to one column */
 @media (min-width: 701px) {
   .wide {
     grid-column: 1 / -1;

@@ -30,6 +30,35 @@ const asteriusGallery = [
 
 export const projects = [
   {
+    id: 'ur-so-messy',
+    categories: ['Game Dev'],
+    title: 'Ur So Messy!',
+    year: '2026',
+    role: 'Co-creator & Gameplay programmer · CTIN 489',
+    status: 'Under development',
+    summary:
+      'A 2D dating sim where you’re trolling four or more suitors at once and have a month until Valentine’s Day to keep as many of them as you can. Matching minigames help you keep straight who’s who, but mix someone up and their affection drops until they want nothing to do with you.',
+    contribution:
+      'As a two-person team, my partner and I split programming, design, and art evenly. So far I’ve drawn a pixel-art profile for every character and built the matching minigame, the texting and dialogue system, and the full UI, along with an affection system where your minigame results shape each date and shaders that wash out and hue-shift the cards so matches get harder to spot.',
+    tools: ['Unity', 'C#', 'Gameplay', 'UI', 'Shader Graph', 'Ink', 'Pixel art'],
+    thumbnail: null,
+    featured: true,
+  },
+  {
+    id: 'homesick',
+    categories: ['Game Dev'],
+    title: 'Homesick',
+    year: '2026',
+    role: 'Solo developer · CTIN 489',
+    summary:
+      'A first-person 3D narrative game about packing up your home. You’re dropped into a room and free to wander, and clicking on an object brings up a little “I remember…” prompt that plays you through a series of cutscenes from the memory tied to it. As you pack up the house, you collect stickers for your journal along the way.',
+    contribution:
+      'What began as a class prototype became a project I kept developing on my own, designing and building the object interactions, the memory cutscenes, and the sticker journal in Unity.',
+    tools: ['Unity', 'C#', '3D', 'Gameplay', 'Narrative'],
+    thumbnail: null,
+    featured: true,
+  },
+  {
     id: 'wax-out',
     categories: ['Game Dev', 'UI/UX'],
     title: 'Wax Out!',
@@ -66,7 +95,7 @@ export const projects = [
     summary:
       'A 2D point-and-click adventure about an art student whose fan art accidentally slipped into their college portfolio. To get it back out, you have to fight through a desktop overrun with pop-ups, rogue minigames, and glitches to reach the admissions portal.',
     contribution:
-      'As one of the design leads, I owned the characters, dialogue, and world-building, and worked closely with our programmers to get the story and procedural systems running in Unity before we shipped it on itch.io.',
+      'As one of the two leads on a 10-person design team, I owned the characters, dialogue, and world-building, and worked closely with our programmers to get the story and procedural systems running in Unity before we shipped it on itch.io.',
     tools: ['Unity', 'Narrative design', 'Systems', 'Leadership'],
     trailer: 'https://www.youtube.com/watch?v=HFW5g92OqKA',
     thumbnail: openYourBrowser,

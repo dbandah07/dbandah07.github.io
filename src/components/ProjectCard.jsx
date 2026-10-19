@@ -11,6 +11,7 @@ function ProjectCard({
   title,
   year,
   role,
+  status,
   summary,
   contribution,
   tools,
@@ -31,7 +32,6 @@ function ProjectCard({
 
   const cover = <img className={styles.thumb} src={thumbnail} alt="" />
 
-  // always wrapped, so the wide card can give the cover half the row
   let coverBlock = <div className={styles.cover}>{cover}</div>
   if (!thumbnail) {
     // plain block so the grid doesn't jump
@@ -80,6 +80,9 @@ function ProjectCard({
         </div>
 
         {role && <p className={styles.role}>{role}</p>}
+        {status && (
+          <p className={`${styles.tool} ${styles.status}`}>{status}</p>
+        )}
 
         {/* what the game is, then what i did on it */}
         {summary && <p className={styles.summary}>{summary}</p>}

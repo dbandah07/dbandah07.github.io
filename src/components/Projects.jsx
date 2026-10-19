@@ -11,15 +11,21 @@ function Projects() {
   const featured = projects.filter((project) => project.featured)
   // /projects is only worth linking when it has more than what's shown here
   const hasMore = projects.length > featured.length
+  // 3 per row. when that would leave one card alone at the bottom, the first
+  // card takes a whole row instead
+  const leadWide = featured.length % 3 === 1
 
   return (
     <section id="portfolio" className={styles.section}>
       <h2 className={styles.heading}>Portfolio</h2>
 
       <div className={styles.grid}>
-        {/* first one leads across the full row, the next four fill the row under it */}
         {featured.map((project, i) => (
-          <ProjectCard key={project.id} {...project} wide={i === 0} />
+          <ProjectCard
+            key={project.id}
+            {...project}
+            wide={leadWide && i === 0}
+          />
         ))}
       </div>
 
