@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router'
 import Home from './pages/Home'
 import About from './pages/About'
 import AllProjects from './pages/AllProjects'
+import ProjectPage from './pages/ProjectPage'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<AllProjects />} />
+        <Route path="/projects/:id" element={<ProjectPage />} />
       </Routes>
       <Footer />
     </>

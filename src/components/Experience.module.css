@@ -1,6 +1,5 @@
 .section {
   padding: 72px var(--gutter);
-  border-bottom: 1px solid var(--border);
 }
 
 .heading {

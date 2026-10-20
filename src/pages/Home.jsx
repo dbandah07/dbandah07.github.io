@@ -8,8 +8,8 @@ function Home() {
     <>
       <Header />
       <main>
-        <Experience />
         <Projects />
+        <Experience />
       </main>
     </>
   )

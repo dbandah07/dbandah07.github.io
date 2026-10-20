@@ -26,6 +26,10 @@
   background: var(--code-bg);
 }
 
+.player {
+  border: 0;
+}
+
 .body {
   padding: 20px;
   display: flex;
@@ -90,16 +94,25 @@
   color: var(--text-h);
 }
 
-/* same tag look, sits under the role line */
+/* same tag shape, sits under the role line. brand purple so it stands out
+   from the tool tags, white text reads on it in both themes */
 .status {
   align-self: flex-start;
   margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
+}
+
+/* trailer and project links, pinned to the bottom of the card */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: auto;
+  padding-top: 18px;
 }
 
 .link {
-  align-self: flex-start;
-  margin-top: auto;
-  padding-top: 18px;
   font-size: 15px;
   color: var(--text-h);
   text-decoration: underline;
@@ -166,10 +179,10 @@
   }
 }
 
-/* same look as .link, but it opens the carousel instead of navigating */
+/* same look as .link, but it plays the trailer or opens the carousel */
 .linkButton {
   composes: link;
-  padding: 18px 0 0;
+  padding: 0;
   border: 0;
   background: transparent;
   font: inherit;

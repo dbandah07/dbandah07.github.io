@@ -1,13 +1,17 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import Carousel from './Carousel'
+import YouTube from './YouTube'
 import styles from './ProjectCard.module.css'
 
 /**
  * Project card for front & project page.
- * The cover opens the trailer when there is one, otherwise the gallery.
+ * The cover plays the trailer right in the card when there is one, otherwise
+ * opens the project page once it has links or breakdowns, otherwise the gallery.
  */
 
 function ProjectCard({
+  id,
   title,
   year,
   role,
@@ -19,10 +23,16 @@ function ProjectCard({
   thumbnail,
   gallery,
   galleryNoun = 'images',
+  links,
+  breakdowns,
   wide = false,
 }) {
   const [showGallery, setShowGallery] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const images = gallery ?? []
+  // a page with only the card's text on it isn't worth the click yet
+  const hasPage = (links ?? []).length > 0 || (breakdowns ?? []).length > 0
+  const page = hasPage ? `/projects/${id}` : null
 
   // one image opens as itself; a deck opens as a deck
   const galleryLabel =
@@ -33,23 +43,45 @@ function ProjectCard({
   const cover = <img className={styles.thumb} src={thumbnail} alt="" />
 
   let coverBlock = <div className={styles.cover}>{cover}</div>
-  if (!thumbnail) {
+  if (trailer && playing) {
+    // the click that swapped this in counts as permission to autoplay
+    coverBlock = (
+      <div className={styles.cover}>
+        <YouTube
+          className={`${styles.thumb} ${styles.player}`}
+          link={trailer}
+          title={title}
+          autoplay
+        />
+      </div>
+    )
+  } else if (!thumbnail) {
     // plain block so the grid doesn't jump
     coverBlock = (
       <div className={`${styles.cover} ${styles.thumbEmpty}`} aria-hidden="true" />
     )
   } else if (trailer) {
     coverBlock = (
-      <a
+      <button
+        type="button"
         className={`${styles.cover} ${styles.coverButton}`}
-        href={trailer}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Watch the ${title} trailer on YouTube`}
+        onClick={() => setPlaying(true)}
+        aria-label={`Play the ${title} trailer`}
       >
         {cover}
-        <span className={styles.coverHint}>Watch trailer</span>
-      </a>
+        <span className={styles.coverHint}>Play trailer</span>
+      </button>
+    )
+  } else if (page) {
+    coverBlock = (
+      <Link
+        className={`${styles.cover} ${styles.coverButton}`}
+        to={page}
+        aria-label={`Open the ${title} project page`}
+      >
+        {cover}
+        <span className={styles.coverHint}>View project</span>
+      </Link>
     )
   } else if (images.length > 0) {
     coverBlock = (
@@ -98,26 +130,35 @@ function ProjectCard({
           </ul>
         )}
 
-        {trailer && (
-          <a
-            className={styles.link}
-            href={trailer}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Watch the trailer
-          </a>
-        )}
+        {(trailer || page || images.length > 1) && (
+          <div className={styles.actions}>
+            {trailer && (
+              <button
+                type="button"
+                className={styles.linkButton}
+                onClick={() => setPlaying(true)}
+              >
+                Watch the trailer
+              </button>
+            )}
 
-        {/* only a real deck gets a button, a single image opens from the cover */}
-        {!trailer && images.length > 1 && (
-          <button
-            type="button"
-            className={styles.linkButton}
-            onClick={() => setShowGallery(true)}
-          >
-            {galleryLabel}
-          </button>
+            {page && (
+              <Link className={styles.link} to={page}>
+                View project
+              </Link>
+            )}
+
+            {/* only a real deck gets a button, a single image opens from the cover */}
+            {!trailer && !page && images.length > 1 && (
+              <button
+                type="button"
+                className={styles.linkButton}
+                onClick={() => setShowGallery(true)}
+              >
+                {galleryLabel}
+              </button>
+            )}
+          </div>
         )}
       </div>
 

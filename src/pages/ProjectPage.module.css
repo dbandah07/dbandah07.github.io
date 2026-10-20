@@ -1,0 +1,238 @@
+.page {
+  padding: 64px var(--gutter) 96px;
+  flex-grow: 1;
+}
+
+.back {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+
+.back:hover {
+  color: var(--accent-text);
+}
+
+.title {
+  font-family: var(--display);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* same tag as the card's status */
+.status {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.missing {
+  margin-top: 16px;
+}
+
+/* trailer left, quick facts right */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.empty {
+  background: var(--code-bg);
+}
+
+.facts {
+  margin: 0;
+}
+
+.fact {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.fact:first-child {
+  padding-top: 0;
+}
+
+.fact dt {
+  font-size: 14px;
+}
+
+.fact dd {
+  margin: 2px 0 0;
+  font-size: 16px;
+  color: var(--text-h);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* purple so it doesn't get lost between the facts and the tags */
+.note {
+  margin-top: 20px;
+  font-size: 15px;
+  color: var(--accent-text);
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+
+.tool {
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: var(--code-bg);
+  color: var(--text-h);
+}
+
+.section {
+  margin-top: 64px;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+/* the card's two paragraphs at reading width, my part a shade darker */
+.summary,
+.contribution {
+  max-width: 62ch;
+}
+
+.contribution {
+  color: var(--text-h);
+  margin-top: 14px;
+}
+
+.breakdowns {
+  display: grid;
+  gap: 64px;
+}
+
+/* gif beside the write-up, sides swap every other one */
+.breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+.breakdown:nth-child(even) .figure {
+  order: 2;
+}
+
+.textOnly {
+  grid-template-columns: minmax(0, 62ch);
+}
+
+.figure {
+  margin: 0;
+}
+
+.media {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.caption {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.partTitle {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.body {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* same bullets as the experience section */
+.points {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+  font-size: 16px;
+}
+
+.points li::marker {
+  color: var(--accent-text);
+}
+
+.body strong,
+.points strong {
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--text-h);
+  text-decoration: underline;
+  text-decoration-color: var(--red-text);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.link:hover {
+  color: var(--accent-text);
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 40px var(--gutter) 64px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .hero,
+  .breakdown {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .breakdown:nth-child(even) .figure {
+    order: 0;
+  }
+  .section {
+    margin-top: 48px;
+  }
+  .breakdowns {
+    gap: 48px;
+  }
+}

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './Carousel.module.css'
 
-// Fullscreen gallery, opened from ProjectCard. Esc closes, arrows move.
+// Fullscreen gallery, opened from ProjectCard or a project page. Esc closes, arrows move.
 // Portalled to body because the card clips with overflow: hidden and grows a
 // transform on hover, which would trap position: fixed inside it.
 function Carousel({ images, title, onClose }) {
