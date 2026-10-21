@@ -177,7 +177,7 @@ function ProjectPage() {
               >
                 {part.media && (
                   <figure className={styles.figure}>
-                    <Media src={part.media} alt={part.title} />
+                    <Media src={part.media} alt={part.mediaAlt ?? part.title} />
                     {part.caption && (
                       <figcaption className={styles.caption}>
                         {part.caption}

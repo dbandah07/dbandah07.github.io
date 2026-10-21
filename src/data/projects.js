@@ -6,6 +6,11 @@ import openYourBrowser from '../assets/open-your-browser.png'
 import smoothTalking from '../assets/smooth-talking-pickpocket.png'
 import urSoMessy from '../assets/ur-so-messy.jpg'
 
+// breakdown diagrams (made in draw.io, still editable there):
+import homesickMemSeq from '../assets/diagrams/homesick_memSeq.drawio.svg'
+import homesickObjLife from '../assets/diagrams/homesick_objLife.drawio.svg'
+import urSoMessyAffection from '../assets/diagrams/urSoMessy_affectionSystem.drawio.svg'
+
 // featured = true -> goes on homepage
 // summary = what the game is, contribution = what i did on it
 //
@@ -14,10 +19,11 @@ import urSoMessy from '../assets/ur-so-messy.jpg'
 //   engine, team, duration -> quick facts beside the trailer
 //   links: [{ label: 'Play on itch.io', href: '...' }]
 //   codeNote: a line under the links, for when the code can't be shared
-//   breakdowns: [{ title, body or points, media, caption, code }]
+//   breakdowns: [{ title, body or points, media, mediaAlt, caption, code }]
 //     body = a paragraph, points = a list of bullet points.
 //     **double stars** around words make them bold
 //     media = an imported gif, image, or .mp4. code = link to the script
+//     mediaAlt = what the media shows, for screen readers (title if left out)
 const folder = (modules) =>
   Object.entries(modules)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -65,6 +71,7 @@ export const projects = [
           'The first pickup pauses the game, locks the camera, and fades to black while the memory plays line by line, skippable with E, Space, or a click.',
           'All the timing runs on unscaled time, so it keeps working while the game is paused.',
         ],
+        media: homesickMemSeq,
       },
       {
         title: 'Pickup and hold',
@@ -73,6 +80,7 @@ export const projects = [
           '**Problem:** held objects bounced in front of the camera and pushed into the player, tilting the whole view.',
           '**Fix:** held objects become kinematic, attach to a grab point on the camera, and ignore the player’s collider until dropped.',
         ],
+        media: homesickObjLife,
       },
       {
         title: 'Debugging the room’s scale',
@@ -118,9 +126,10 @@ export const projects = [
         points: [
           'Each suitor is a ScriptableObject holding their portrait, interest pictures, and affection values, so adding a suitor is data, not code.',
           'Each round deals one random interest picture per suitor and shuffles them, and you pair everyone up before a 30-second timer runs out.',
-          'A persistent AffectionManager singleton keeps every suitor’s score across scenes. Correct matches for your date raise it, while mix-ups only cost affection when they involve your date, and each suitor has their own values to tune.',
+          'One AffectionManager that every scene can reach keeps each suitor’s score, so affection carries over between chats and the minigame. Correct matches with your date raise it, mix-ups involving your date lower it, and each suitor has their own reward and penalty values, so some care a lot more about mistakes than others.',
           'Each suitor’s bar eases toward their new score instead of jumping, and an event fires on every change so other systems can react to it.',
         ],
+        media: urSoMessyAffection,
       },
       {
         title: 'Card wash-out shader',
@@ -137,7 +146,8 @@ export const projects = [
         points: [
           'Ink lines become chat bubbles, with a #match tag deciding whether a line is the suitor’s or yours, and Ink choices become reply buttons.',
           'Each chat saves its Ink state as JSON along with its message history, so leaving for the minigame and coming back picks up right where you left off.',
-          'Each chat takes three choices, and as you gain more suitors, you can only talk to some of them each day. From Day 3 on, every day ends in the matching game. The current build plays through all 10 days and ends with a confession you can accept or turn down. We’re finishing the dialogue and art for the remaining suitors and plan to expand the ending.',
+          'Each chat takes three choices, and as you gain more suitors, you can only talk to some of them each day. From Day 3 on, every day ends in the matching game.',
+          'The current build plays through all 10 days and ends with a confession you can accept or turn down. Each suitor’s final affection will decide their ending: less than 30 (inclusive) gets no confession, 30–70 gets a “let’s keep this going” and over 70 (inclusive) gets a confession, each in that suitor’s own words. The goal is to collect as many confessions as you can, but to do that, you must juggle all suitors at once.',
           '**Playtesting:** testers expected more drama from a title like Ur So Messy!, so we rewrote the options to be messier and more chaotic.',
         ],
       },
@@ -231,7 +241,7 @@ export const projects = [
         title: 'Main UI',
         points: [
           'XP bar that slides a sprite mask across the art to show progress as a percentage, instead of stretching the sprite.',
-          'Added XP tracking to a persistent singleton that survives scene changes and calculates monster morale from current and total XP.',
+          'Added XP tracking to a shared XP manager that stays alive between scenes and calculates monster morale from current and total XP.',
           'A morale flower that swaps between full, half, and no-morale art based on troop state, plus a book with arrows that flip pages and wrap around.',
         ],
       },
