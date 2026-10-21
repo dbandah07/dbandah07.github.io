@@ -160,6 +160,7 @@ export const projects = [
     title: 'Open Your Browser (OYB)',
     year: '2025',
     role: 'Co-design lead · Open Alpha',
+    status: 'Shipped',
     summary:
       'A 2D point-and-click adventure about an art student whose fan art accidentally slipped into their college portfolio. To get it back out, you have to fight through a desktop overrun with pop-ups, rogue minigames, and glitches to reach the admissions portal.',
     contribution:
@@ -213,6 +214,7 @@ export const projects = [
     title: 'Neuromancer',
     year: '2025',
     role: 'Programmer · Open Alpha',
+    status: 'Shipped',
     summary:
       'A comedy narrative sim where you play an evil wizard whose minions keep showing up mid-crisis after losing to the hero. Brew them a potion or sit them down for therapy, because if they give up, so does your war effort.',
     contribution:
@@ -258,6 +260,7 @@ export const projects = [
     title: 'Smooth Talking Pickpocket',
     year: '2024',
     role: 'Designer · Open Alpha',
+    status: 'Shipped',
     summary:
       'A narrative pickpocketing game set in a fake city, New London, where you’ve got five days to make a name for yourself as a thief before the gala. Every mark is a conversation held together by a trust bar, and a stealth minigame decides whether you walk away with their stuff or in handcuffs.',
     contribution:
