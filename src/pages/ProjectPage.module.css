@@ -155,6 +155,13 @@
 
 .figure {
   margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+/* a diagram tucked under the bullets instead of in the media column */
+.underText {
+  margin-top: 24px;
 }
 
 .media {

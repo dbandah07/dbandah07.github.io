@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import Carousel from './Carousel'
-import YouTube from './YouTube'
+import Trailer from './Trailer'
 import styles from './ProjectCard.module.css'
 
 /**
@@ -47,10 +47,11 @@ function ProjectCard({
     // the click that swapped this in counts as permission to autoplay
     coverBlock = (
       <div className={styles.cover}>
-        <YouTube
+        <Trailer
           className={`${styles.thumb} ${styles.player}`}
-          link={trailer}
+          src={trailer}
           title={title}
+          poster={thumbnail}
           autoplay
         />
       </div>

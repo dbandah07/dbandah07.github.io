@@ -11,19 +11,34 @@ import homesickMemSeq from '../assets/diagrams/homesick_memSeq.drawio.svg'
 import homesickObjLife from '../assets/diagrams/homesick_objLife.drawio.svg'
 import urSoMessyAffection from '../assets/diagrams/urSoMessy_affectionSystem.drawio.svg'
 
+// trailers that live in the repo instead of on youtube:
+import homesickTrailer from '../assets/homesick_trailer.mp4'
+
+// breakdown clips (silent loops):
+import homesickCrateCounter from '../assets/cratecounter_homesick.mp4'
+import homesickHolding from '../assets/holding_homesick.mp4'
+import homesickMemFade from '../assets/memfadeinfadeout_homesick.mp4'
+import homesickPickingUp from '../assets/pickingup_homesick.mp4'
+
 // featured = true -> goes on homepage
 // summary = what the game is, contribution = what i did on it
+// trailer = a youtube link or an imported .mp4, plays on the card and the page
 //
 // project page (/projects/<id>). all of this is optional, and the card only
 // links to the page once the project has links or at least one breakdown:
 //   engine, team, duration -> quick facts beside the trailer
 //   links: [{ label: 'Play on itch.io', href: '...' }]
 //   codeNote: a line under the links, for when the code can't be shared
-//   breakdowns: [{ title, body or points, media, mediaAlt, caption, code }]
+//   breakdowns: [{ title, body or points, media, mediaAlt, mediaUnderText,
+//     caption, code }]
 //     body = a paragraph, points = a list of bullet points.
 //     **double stars** around words make them bold
-//     media = an imported gif, image, or .mp4. code = link to the script
-//     mediaAlt = what the media shows, for screen readers (title if left out)
+//     media = an imported gif, image, or .mp4, or a list of them to stack.
+//     code = link to the script
+//     mediaAlt = what the media shows, for screen readers (title if left out).
+//     a list here lines up with a list of media
+//     mediaUnderText = one more image, shown under the bullets instead of
+//     beside them
 const folder = (modules) =>
   Object.entries(modules)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -71,7 +86,8 @@ export const projects = [
           'The first pickup pauses the game, locks the camera, and fades to black while the memory plays line by line, skippable with E, Space, or a click.',
           'All the timing runs on unscaled time, so it keeps working while the game is paused.',
         ],
-        media: homesickMemSeq,
+        // the fade in action first, then the diagram of the whole sequence
+        media: [homesickMemFade, homesickMemSeq],
       },
       {
         title: 'Pickup and hold',
@@ -80,7 +96,9 @@ export const projects = [
           '**Problem:** held objects bounced in front of the camera and pushed into the player, tilting the whole view.',
           '**Fix:** held objects become kinematic, attach to a grab point on the camera, and ignore the player’s collider until dropped.',
         ],
-        media: homesickObjLife,
+        // an object's life in order: picked up, held, packed
+        media: [homesickPickingUp, homesickHolding, homesickCrateCounter],
+        mediaUnderText: homesickObjLife,
       },
       {
         title: 'Debugging the room’s scale',
@@ -100,6 +118,7 @@ export const projects = [
         ],
       },
     ],
+    trailer: homesickTrailer,
     thumbnail: homesickCover,
     featured: true,
   },

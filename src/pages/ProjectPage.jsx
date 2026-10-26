@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { projects } from '../data/projects'
 import Carousel from '../components/Carousel'
-import YouTube from '../components/YouTube'
+import Trailer from '../components/Trailer'
 import styles from './ProjectPage.module.css'
 
 // gifs and stills are plain images. a clip loops silently like a gif,
@@ -84,7 +84,14 @@ function ProjectPage() {
 
   let hero = <div className={`${styles.cover} ${styles.empty}`} aria-hidden="true" />
   if (trailer) {
-    hero = <YouTube className={styles.cover} link={trailer} title={title} />
+    hero = (
+      <Trailer
+        className={styles.cover}
+        src={trailer}
+        title={title}
+        poster={thumbnail}
+      />
+    )
   } else if (thumbnail) {
     hero = <img className={styles.cover} src={thumbnail} alt="" />
   }
@@ -166,51 +173,66 @@ function ProjectPage() {
           <h2 className={styles.heading}>Breakdowns</h2>
 
           <div className={styles.breakdowns}>
-            {breakdowns.map((part) => (
-              <article
-                key={part.title}
-                className={
-                  part.media
-                    ? styles.breakdown
-                    : `${styles.breakdown} ${styles.textOnly}`
-                }
-              >
-                {part.media && (
-                  <figure className={styles.figure}>
-                    <Media src={part.media} alt={part.mediaAlt ?? part.title} />
-                    {part.caption && (
-                      <figcaption className={styles.caption}>
-                        {part.caption}
-                      </figcaption>
-                    )}
-                  </figure>
-                )}
+            {breakdowns.map((part) => {
+              // one file or a list of them, stacked in the same column
+              const media = [part.media ?? []].flat()
+              const alts = [part.mediaAlt ?? []].flat()
 
-                <div className={styles.text}>
-                  <h3 className={styles.partTitle}>{part.title}</h3>
-
-                  {part.body && <p className={styles.body}>{withBold(part.body)}</p>}
-                  {(part.points ?? []).length > 0 && (
-                    <ul className={styles.points}>
-                      {part.points.map((point) => (
-                        <li key={point}>{withBold(point)}</li>
+              return (
+                <article
+                  key={part.title}
+                  className={
+                    media.length > 0
+                      ? styles.breakdown
+                      : `${styles.breakdown} ${styles.textOnly}`
+                  }
+                >
+                  {media.length > 0 && (
+                    <figure className={styles.figure}>
+                      {media.map((src, i) => (
+                        <Media key={src} src={src} alt={alts[i] ?? part.title} />
                       ))}
-                    </ul>
+                      {part.caption && (
+                        <figcaption className={styles.caption}>
+                          {part.caption}
+                        </figcaption>
+                      )}
+                    </figure>
                   )}
 
-                  {part.code && (
-                    <a
-                      className={styles.link}
-                      href={part.code}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Read the code
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
+                  <div className={styles.text}>
+                    <h3 className={styles.partTitle}>{part.title}</h3>
+
+                    {part.body && <p className={styles.body}>{withBold(part.body)}</p>}
+                    {(part.points ?? []).length > 0 && (
+                      <ul className={styles.points}>
+                        {part.points.map((point) => (
+                          <li key={point}>{withBold(point)}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {part.code && (
+                      <a
+                        className={styles.link}
+                        href={part.code}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Read the code
+                      </a>
+                    )}
+
+                    {/* for when the media column is already full */}
+                    {part.mediaUnderText && (
+                      <figure className={`${styles.figure} ${styles.underText}`}>
+                        <Media src={part.mediaUnderText} alt={part.title} />
+                      </figure>
+                    )}
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
       )}
