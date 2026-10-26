@@ -17,7 +17,7 @@ import homesickTrailer from '../assets/homesick_trailer.mp4'
 // breakdown clips (silent loops):
 import homesickCrateCounter from '../assets/cratecounter_homesick.mp4'
 import homesickHolding from '../assets/holding_homesick.mp4'
-import homesickMemFade from '../assets/memfadeinfadeout_homesick.mp4'
+import homesickMemFade from '../assets/fadeinfadeout.mp4'
 import homesickPickingUp from '../assets/pickingup_homesick.mp4'
 
 // featured = true -> goes on homepage
@@ -132,8 +132,8 @@ export const projects = [
     summary:
       'A 2D dating sim where you’re juggling four or more suitors at once, with Valentine’s Day a month away. Over 10 days, you try to keep as many of them as you can. Matching minigames help you keep straight who’s who, but mix someone up and their affection drops.',
     contribution:
-      'As a two-person team, my partner and I split programming, design, and art evenly. So far I’ve drawn a pixel-art profile for every character and built the matching minigame, the texting and dialogue system, and the full UI, along with an affection system that tracks how each suitor feels about you and shaders that wash out and hue-shift the cards so matches get harder to spot.',
-    tools: ['Unity', 'C#', 'Gameplay', 'UI', 'Shader Graph', 'Ink', 'Pixel art'],
+      'As a two-person team, my partner and I split programming, design, and art evenly. So far I’ve drawn a pixel-art profile for every character and built the matching minigame, the texting and dialogue system, the day-by-day flow with its phone notifications, and the full UI, along with an affection system that tracks how each suitor feels about you, shaders that wash out and hue-shift the cards so matches get harder to spot, and the telemetry we use in playtests.',
+    tools: ['Unity', 'C#', 'Gameplay', 'UI', 'Shader Graph', 'Ink', 'Telemetry', 'Pixel art'],
     engine: 'Unity',
     team: '2 people',
     duration: '12–13 weeks',
@@ -146,7 +146,7 @@ export const projects = [
           'Each suitor is a ScriptableObject holding their portrait, interest pictures, and affection values, so adding a suitor is data, not code.',
           'Each round deals one random interest picture per suitor and shuffles them, and you pair everyone up before a 30-second timer runs out.',
           'One AffectionManager that every scene can reach keeps each suitor’s score, so affection carries over between chats and the minigame. Correct matches with your date raise it, mix-ups involving your date lower it, and each suitor has their own reward and penalty values, so some care a lot more about mistakes than others.',
-          'Each suitor’s bar eases toward their new score instead of jumping, and an event fires on every change so other systems can react to it.',
+          'Each suitor’s bar eases toward their new score instead of jumping, and their card in the chat list shows their affection as a percentage, so you can see where everyone stands.',
         ],
         media: urSoMessyAffection,
       },
@@ -165,15 +165,37 @@ export const projects = [
         points: [
           'Ink lines become chat bubbles, with a #match tag deciding whether a line is the suitor’s or yours, and Ink choices become reply buttons.',
           'Each chat saves its Ink state as JSON along with its message history, so leaving for the minigame and coming back picks up right where you left off.',
-          'Each chat takes three choices, and as you gain more suitors, you can only talk to some of them each day. From Day 3 on, every day ends in the matching game.',
-          'The current build plays through all 10 days and ends with a confession you can accept or turn down. Each suitor’s final affection will decide their ending: less than 30 (inclusive) gets no confession, 30–70 gets a “let’s keep this going” and over 70 (inclusive) gets a confession, each in that suitor’s own words. The goal is to collect as many confessions as you can, but to do that, you must juggle all suitors at once.',
+          'Every suitor’s script is split into one Ink knot per day (LB_DAY_04, DT_DAY_04), and the chat builds today’s knot name from that suitor’s prefix. Skip someone and their dialogue for that day is skipped too.',
+          'A chat ends when its knot ends, not after a set number of replies, so days can be different lengths.',
+          'After Day 10, each chat reads the suitor’s final affection and jumps to their ending: under 30% gets no confession, 30–70% gets “let’s keep this going,” and over 70% gets a confession, each in that suitor’s own words. The goal is to collect as many confessions as you can, but to do that, you must juggle all suitors at once.',
           '**Playtesting:** testers expected more drama from a title like Ur So Messy!, so we rewrote the options to be messier and more chaotic.',
+        ],
+      },
+      {
+        title: 'Day flow and notifications',
+        points: [
+          'You can open two chats a day. Once both are done, the day ends in a minigame, and from Day 3 on that’s the matching game.',
+          'After the minigame, your thought slides in (“well i think i should log off now”), the home screen loads, and the menu button glows until you click Next Day. The day only advances on that click.',
+          'Each new day queues banners: “New match!” for anyone unlocking, then a text from everyone you’ve already met. A banner only leaves the queue once it’s fully shown, so switching scenes doesn’t lose it.',
+          'The thought bubble reuses the banner’s slide-in code instead of being a second system.',
+        ],
+      },
+      {
+        title: 'Playtest telemetry',
+        points: [
+          'Logs the tone of each dialogue choice, which suitors players pick each day, end-of-day affection, minigame difficulty, and profile clicks, using USC Games’ telemetry package.',
+          'Every Ink reply is tagged #good, #neutral, or #bad, and the game reads the tags off each choice, so tone can change without touching C#.',
+          'Like AffectionManager, GameTelemetry stays alive between scenes, so every scene logs to the same place.',
+          '**Problem:** chats and banners worked once after a code change, then broke on every run after.',
+          '**Cause:** Enter Play Mode settings skipped the domain reload, so the day and chat saves carried over between runs. Every playtester would have started where the last one left off.',
+          '**Fix:** turned the domain reload back on.',
         ],
       },
       {
         title: 'Structuring the game',
         points: [
-          'This was my first time structuring a game from scratch, so I reorganized scripts as it grew. For example, I turned the chat list that was copied into every chat scene into one shared prefab, with a DayUnlock script for the day each chat opens.',
+          'This was my first time structuring a game from scratch, so I reorganized scripts as it grew. For example, I turned the chat list that was copied into every chat scene into one shared prefab.',
+          'Each suitor’s unlock day, chat scene, and Ink prefix moved into their CharacterData, so the chat list, notifications, and dialogue all read from one place. Adding a suitor means filling in one asset instead of three scripts.',
           'Shared static data (who your date is, which chat you came from) carries state between scenes, so the right characters show up consistently everywhere.',
           '**Problem:** lost .meta files wiped script references across every scene.',
           '**Fix:** reattached scripts and Inspector fields scene by scene and restructured the folders so it was clear what belonged where.',
