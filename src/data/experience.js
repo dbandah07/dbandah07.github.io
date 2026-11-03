@@ -29,7 +29,7 @@ export const experience = [
       'Laid the backend foundation for profiles and sharing by architecting the database schema and REST APIs.',
       'Secured user accounts by implementing authentication flows and core backend business logic.',
     ],
-    tools: ['React', 'Firebase', 'REST APIs', 'Auth', 'Databases'],
+    tools: ['Full-stack', 'React', 'Firebase', 'REST APIs', 'Auth', 'Databases'],
   },
   {
     id: 'usc-games-career-center',
